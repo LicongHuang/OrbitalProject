@@ -1,4 +1,4 @@
-FROM alpine:latest
+ROM alpine:latest
 RUN apk add gnupg bash curl make build-base vim
 
 ENV PYTHONUNBUFFERED=1

@@ -6,3 +6,9 @@ Currently created a docker container
 
 [ ] maybe, need to write a shutdown instance
 
+
+Database running on baremetal, then run the USB container
+
+
+
+
