@@ -1,10 +1,8 @@
-ROM alpine:latest
-RUN apk add gnupg bash curl make build-base vim
+FROM debian:bookworm-slim
 
-ENV PYTHONUNBUFFERED=1
-RUN apk add python3 python3-dev py3-pip py3-wheel py3-setuptools
-RUN python3 -m ensurepip
-RUN pip3 install --upgrade pip setuptools
+RUN apt-get update && apt upgrade -y
+RUN apt-get install -y python3 python3-pip
+RUN apt-get install -y sqlite3 libsqlite3-dev
 
 WORKDIR /root
 
