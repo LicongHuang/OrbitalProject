@@ -6,6 +6,7 @@ cur = conn.cursor()
 cur.execute("""
             CREATE TABLE IF NOT EXISTS passcode (
                 id INTEGER PRIMARY KEY,
+                usb_id TEXT,
                 pass BLOB)
             """)
 
