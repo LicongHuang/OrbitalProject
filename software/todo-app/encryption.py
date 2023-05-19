@@ -1,9 +1,9 @@
 import nacl.secret
 import os
-import PoC
+import poc
 
 def test():
-    key = open("code.pass", mode="rb").read()[:32]
+    key = open("key.key", mode="rb").read()[:32]
 
 
     cipher = nacl.secret.SecretBox(key)
