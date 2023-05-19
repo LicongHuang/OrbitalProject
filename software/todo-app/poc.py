@@ -1,13 +1,11 @@
 import os
 import encryption
 import sqlite3
+import dbutil
 
-def main():
-    command = "head -1 /dev/random > code.pass"
-    os.system(command)
+def poc():
 
-    random_line = open('code.pass',mode='rb').read()
-
+    random_line = genKey()
     conn = sqlite3.connect('passcode.db')
     cursor = conn.cursor()
 
@@ -16,8 +14,18 @@ def main():
     conn.commit()
     conn.close()
 
+def genKey():
 
-def check(usb_id):
+    command = "head -1 /dev/random > key.key"
+    os.system(command)
+
+    random_line = open('key.key',mode='rb').read()[:32]
+
+    return random_line
+
+
+
+def checkInDatabase(usb_id):
     conn = sqlite3.connect('passcode.db')
     cursor = conn.cursor()
 
@@ -29,6 +37,6 @@ def check(usb_id):
 
 
 if __name__ == '__main__':
-    main()
-    check("1")
+    poc()
+    checkInDatabase("1")
     encryption.test()
