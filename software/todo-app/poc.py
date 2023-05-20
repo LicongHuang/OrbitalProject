@@ -38,6 +38,7 @@ def checkInDatabase(usb_id):
 
 if __name__ == '__main__':
     poc()
+    encryption.getFromUSB(1)
     dbutil.checkUSB("1")
     #checkInDatabase("1")
     encryption.test()
