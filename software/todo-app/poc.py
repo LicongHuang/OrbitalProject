@@ -3,6 +3,8 @@ import encryption
 import sqlite3
 import dbutil
 
+# This is the main file for the proof of concept
+
 def poc():
 
     random_line = genKey()
