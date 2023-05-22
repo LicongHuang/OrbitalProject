@@ -10,5 +10,8 @@ COPY . /home
 
 WORKDIR /home
 
+
 ENTRYPOINT ["/bin/bash"]
+
+#CMD ["./startupscript.sh"]
 

@@ -1,13 +1,15 @@
-import os
-import encryption
+#import os
+#import encryption
 import sqlite3
 import dbutil
-
+import usbutil
+import keygen
+import dbutil_encrypt
 # This is the main file for the proof of concept
 
 def poc():
 
-    random_line = genKey()
+    random_line = keygen.genKey()
     conn = sqlite3.connect('passcode.db')
     cursor = conn.cursor()
 
@@ -16,31 +18,21 @@ def poc():
     conn.commit()
     conn.close()
 
-def genKey():
-
-    command = "head -1 /dev/random > key.key"
-    os.system(command)
-
-    random_line = open('key.key',mode='rb').read()[:32]
-
-    return random_line
-
-
 
 def checkInDatabase(usb_id):
-    conn = sqlite3.connect('passcode.db')
-    cursor = conn.cursor()
-
-    cursor.execute(f"SELECT {usb_id} FROM passcode")
-    passcode = cursor.fetchone()
-
-    conn.close()
-    return passcode == None
+    inUSB = dbutil.checkUSB(usb_id)
 
 
 if __name__ == '__main__':
-    poc()
-    encryption.getFromUSB(1)
-    dbutil.checkUSB("1")
-    #checkInDatabase("1")
-    encryption.test()
+    print("getFromUSB")
+    files = usbutil.getFiles()
+    print("encryptFiles")
+    dbutil_encrypt.encryptFiles()
+    print("decryptFiles")
+    dbutil_encrypt.decryptFiles()
+    #print("checkUSB")
+    #dbutil.checkUSB("1")
+#    print("checkInDatabase")
+#    checkInDatabase("1")
+    #print("encryption.test")
+    #encryption.test()
