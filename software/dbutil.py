@@ -12,7 +12,6 @@ def getKey(usb_id, conn):
     c = conn.cursor()
     c.execute("SELECT pass FROM passcode WHERE usb_id = ?", (usb_id,))
     row = c.fetchone()
-    print("Key: ", row)
     # Row could be None
     return row
 
@@ -53,7 +52,6 @@ def checkUSB(usb_id):
         #insertKey(usb_id, row, conn)
         #logging.info("Inserted new key for usb_id: " + usb_id)
     conn.close()
-    print(result)
     return result
     
 def useKey(usb_id):
