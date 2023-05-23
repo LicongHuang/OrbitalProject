@@ -8,7 +8,6 @@ def getFilesUSB(filepath):
     # TODO get the USB file actually working and read the list of the folder
     ls = list(os.scandir(filepath))
     ls = [entry.name for entry in ls]
-    print(ls)
     return ls
 
 
