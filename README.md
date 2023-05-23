@@ -7,7 +7,7 @@ This project is a hardware centric project that encrypts a usb drive
 It has hardware and software aspects to the project
 
 
-Milestone 1:
+<h1>Milestone 1:</h1>
 
 <h2>Software</h2>
 
