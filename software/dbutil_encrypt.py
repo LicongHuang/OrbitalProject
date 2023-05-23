@@ -26,7 +26,7 @@ def decryptFiles():
     ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
     files = usbutil.getFiles()
-    key = dbutil.useKey(ID)[0]
+    key = dbutil.useKey(ID)
 
     for file in files:
         if not file.endswith('.td'):

@@ -1,7 +1,6 @@
 # Author: Huang Licong
 import keygen
 import sqlite3
-import logging
 
 # This gets the key from the database
 # usb_id: The id of the usb
@@ -48,9 +47,6 @@ def checkUSB(usb_id):
     result = False
     if not row is None:
        result = True 
-        #row = keygen.genKey()
-        #insertKey(usb_id, row, conn)
-        #logging.info("Inserted new key for usb_id: " + usb_id)
     conn.close()
     return result
     
@@ -58,13 +54,10 @@ def useKey(usb_id):
     conn = connect()
     # if the usb is in the database, get the key
     if checkUSB(usb_id):
-        key = getKey(usb_id, conn)
-        #deleteUSB(usb_id, conn)
-        logging.info("Deleted key for usb_id: " + usb_id)
+        key = getKey(usb_id, conn)[0]
     else:
         key = keygen.genKey()
         insertKey(usb_id, key, conn)
-        logging.info("Inserted new key for usb_id: " + usb_id)
 
     conn.close()
     return key
