@@ -31,7 +31,9 @@ This would create a docker container, once inside the container:
 ./startupscript.sh
 ```
 
-The above command generates a python virtual environment and run the encryption and decryption on test files in `usb_test`, run:
+The above command generates a python virtual environment and download requirements.
+
+To test the code, run below
 ``` bash
 ./test -e #to encrypt usb_test
 ./test -d # to decrypt usb_test
