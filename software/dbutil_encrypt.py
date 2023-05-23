@@ -10,9 +10,10 @@ def encryptFiles():
     filepath = usbutil.getUSBFilePath() + '/'
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
-    print(len(key))
 
     for file in files:
+        if file.endswith('.td'):
+            continue
         binfile = open(filepath + file, mode="rb").read()
         ciphertext = encryption.encryption(key, binfile)
         encryption.makeEncryptedFile(filepath + file, ciphertext)
@@ -26,9 +27,10 @@ def decryptFiles():
     filepath = usbutil.getUSBFilePath() + '/'
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)[0]
-    print(type(key))
 
     for file in files:
+        if not file.endswith('.td'):
+            continue
         binfile = open(filepath + file, mode="rb").read()
         plaintext = encryption.decryption(key, binfile)
         encryption.makeDecryptedFile(filepath + file, plaintext)

@@ -53,7 +53,6 @@ def makeDecryptedFile(filename, plaintext):
 
 def removeFile(filename):
     # TODO make the function actually working
-    print(filename)
     if os.path.exists(filename):
         os.remove(filename)
         print("The file was removed")
