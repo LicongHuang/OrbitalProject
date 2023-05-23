@@ -18,5 +18,4 @@ Milestone 1:
  - [X] Generate random bits to be used as encryption key
  - [X] Store and use key in database
  - [X] Encrypt and Decrypt file 
- - [ ] Read from USB ports (will change with hardware)
 
