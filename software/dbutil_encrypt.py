@@ -36,5 +36,6 @@ def decryptFiles():
         encryption.makeDecryptedFile(filepath + file, plaintext)
         encryption.removeFile(filepath + file)
     print("Completed decryption")
+    dbutil.deleteUSB(ID, dbutil.connect()) 
     #dbutil.disconnect(conn)
 
