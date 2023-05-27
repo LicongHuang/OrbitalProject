@@ -31,13 +31,14 @@ try:
 				GPIO.output(rows[myRow],GPIO.HIGH)
 				butVal=GPIO.input(columns[myColumn])
 				GPIO.output(rows[myRow],GPIO.LOW)
-				if butVal==0:
-					myChar=keyPad[myRow][myColumn]
-					noPress=False
-				if butVal==0 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
-					print(myChar) #can change this to send to another file instead of just printing it
+				print(butVal)
+				##if butVal==0:
+					##myChar=keyPad[myRow][myColumn]
+					##noPress=False
+				##if butVal==0 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
+					##print(myChar) #can change this to send to another file instead of just printing it
 		##noPressOld=noPress
-		sleep(7)
+		##sleep(7)
 
 except KeyboardInterrupt:
 	sleep(.2)
