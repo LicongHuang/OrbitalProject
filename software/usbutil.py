@@ -18,7 +18,7 @@ def getUSBFilePath():
     return "./usb_test"
 
 def getUSBID():
-    return "1"
+    return "usb1"
 
 
 def getFiles():
