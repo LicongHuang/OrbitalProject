@@ -13,8 +13,9 @@ def getKey(id):
     #os.system("head -1 /dev/urandom | base64 > code.pass")
     conn = dbutil.connect() 
     #key = open("key.key", mode="rb").read()[:32]
+    key = dbutil.getKey(id, conn)
     conn.close()
-    return dbutil.getKey(id, conn)
+    return key
 
 # This is the encryption function
 # file: the file to be encrypted
