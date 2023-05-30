@@ -1,0 +1,44 @@
+#code adapted from https://www.youtube.com/watch?v=0sD9J8iu8RQ&list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O&index=36
+#documentation by me
+
+import OPi.GPIO as GPIO #replaced from Ppi.GPIO as GPIO
+from time import sleep # not sure how too replace this for orange pi
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD) #basically choose how pin numbering system, you can choose between BCM and BOARD
+0,'#','D']] #keypad 
+
+
+GPIO.setup(outputs[0],GPIO.OUT) #basically pinMode
+GPIO.setup(outputs[1],GPIO.OUT) #basically pinMode
+GPIO.setup(outputs[2],GPIO.OUT) #basically pinMode
+GPIO.setup(outputs[3],GPIO.OUT) #basically pinMode
+
+GPIO.setup(inputs[0],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
+GPIO.setup(inputs[1],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
+GPIO.setup(inputs[2],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
+GPIO.setup(inputs[3],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
+
+try:
+##polling for signal from the buttons)
+  
+	while True: 
+		for myOutputs in [0,1,2,3]: 
+			GPIO.output(outputs[myOutputs],GPIO.HIGH) 
+		if GPIO.input(inputs[0]): 
+			print(1)
+			##sleep(7)
+		if GPIO.input(inputs[1]):
+      			print(2)
+			##sleep(7)
+		if GPIO.input(inputs[2]):
+			print(3)
+			##sleep(7)
+		if GPIO.input(inputs[3]):
+			print(4)
+			##sleep(7)
+
+except KeyboardInterrupt:
+	sleep(.2)
+	GPIO.cleanup()
+	print('GPIO Good to Go')
