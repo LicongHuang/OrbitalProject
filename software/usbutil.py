@@ -1,5 +1,6 @@
 import os
 import encryption
+import pyudev
 
 # This is a function to get the file from the USB
 # state: 1 for getting the file from the USB
