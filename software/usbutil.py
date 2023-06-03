@@ -1,6 +1,5 @@
 import os
 import encryption
-import pyudev
 
 # This is a function to get the file from the USB
 # state: 1 for getting the file from the USB
@@ -19,7 +18,7 @@ def getUSBFilePath():
     return "./usb_test"
 
 def getUSBID():
-    return "usb1"
+    return ""
 
 
 def getFiles():

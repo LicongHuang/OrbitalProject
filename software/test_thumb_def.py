@@ -27,10 +27,8 @@ class TestTD(unittest.TestCase):
     def test_encryption(self):
         key = keygen.genKey()
         test = b"test"
-        import logging
-        logging.info(len(key))
-        ciphertext = encryption.encryption(key, test)
-        plaintext = encryption.decryption(key, ciphertext)
+        ciphertext = encryption.encryption(key + b'0'*(32 - len(key)), test)
+        plaintext = encryption.decryption(key + b'0'*(32 - len(key)), ciphertext)
 
         try:
             #assert test == plaintext

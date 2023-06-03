@@ -1,0 +1,10 @@
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 003: ID 048d:c966 Integrated Technology Express, Inc. ITE Device(8176)
+Bus 003 Device 002: ID 1ea7:0066 SHARKOON Technologies GmbH [Mediatrack Edge Mini Keyboard]
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 004: ID 0489:e0cd Foxconn / Hon Hai Wireless_Device
+Bus 001 Device 003: ID 13d3:56ff IMC Networks Integrated Camera
+Bus 001 Device 012: ID 258a:0049 BY Tech Gaming Keyboard
+Bus 001 Device 007: ID 256c:006d HUION Huion Tablet_GS1161
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
