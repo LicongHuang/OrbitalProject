@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-if [ $# -ne 1 ]; then
-    echo "This is a test script for demo only"
-    echo "  -e : for encrypting files in usb_test"
-    echo "  -d : for decrypting files in usb_test"
-    exit 1
-fi
+#if [ $# -ne 1 ]; then
+#    echo "This is a test script for demo only"
+#    echo "  -e : for encrypting files in usb_test"
+#    echo "  -d : for decrypting files in usb_test"
+#    exit 1
+#fi
 
 #python3 -m venv /home
 #source /home/bin/activate
