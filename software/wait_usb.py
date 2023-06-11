@@ -21,6 +21,7 @@ def check_usb():
         if device.action == 'add':
             print('{} connected'.format(device))
             add_usb()
+            return
         elif device.action == 'remove':
             print('{} disconnected'.format(device))
 

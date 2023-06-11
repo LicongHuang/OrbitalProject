@@ -1,13 +1,24 @@
 import os
 
 
-def set_password():
+def check_password_file():
     if os.path.exists(".password"):
-        print("Password already set!")
+        return True
+    else:
+        return False
+
+def set_password():
+    if check_password_file():
+        print("Password already set")
         return
-    print("Setting password...")
     password = input("Enter password: ")
     
+    reenter = input("Re-enter password: ")
+
+    if password != reenter:
+        print("Passwords do not match")
+        return set_password()
+
     infile = open(".password", "w")
     infile.write(password)
     infile.close()
