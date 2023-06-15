@@ -1,15 +1,18 @@
 import os
 import encryption
-
+from os.path import join, getsize
 # This is a function to get the file from the USB
 # state: 1 for getting the file from the USB
 
-def getFilesUSB(filepath):
-    # TODO get the USB file actually working and read the list of the folder
-    ls = list(os.scandir(filepath))
-    ls = [entry.name for entry in ls]
-    return ls
 
+def fileWalk(path):
+    filesList = []
+    for root, dirs, files in os.walk(path):
+        print(root)
+        print(files)
+        for file in files:
+            filesList.append(os.path.join(root, file))
+    return filesList
 
 # Will implement the function later when on the hardware
 # should find the usb from the usb ports
@@ -23,5 +26,7 @@ def getUSBID():
 
 def getFiles():
     filepath = getUSBFilePath()
-    return getFilesUSB(filepath)
+    return fileWalk(filepath)
 
+if __name__ == "__main__":
+    print(getFiles())
