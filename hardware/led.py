@@ -1,14 +1,16 @@
 import OPi.GPIO as GPIO
 from time import sleep
+GPIO.setboard(GPIO.H616)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 GPIO.setup(12,GPIO.OUT)
 
 try:
-	GPIO.output(12,GPIO.HIGH)
-	sleep(5)
-	GPIO.output(12,GPIO.LOW)
-	sleep(1)
+	while True:
+		GPIO.output(12,1)
+		sleep(0.2)
+		GPIO.output(12,0)
+		sleep(0.2)
 
 except KeyboardInterrupt:
 	sleep(.2)
