@@ -1,4 +1,4 @@
-#code adapted from https://www.youtube.com/watch?v=0sD9J8iu8RQ&list=PLGs0VKk2DiYxdMjCJmcP6jt4Yw6OHK85O&index=36
+#code adapted from https://www.youtube.com/watch?v=0sD9J8iu8RQ&t=1205s
 #documentation by me
 
 import OPi.GPIO as GPIO #replaced from Ppi.GPIO as GPIO
