@@ -9,6 +9,7 @@ def add_usb():
     with open("usb_list.txt", "r") as f:
         for line in f:
             usb_id = line.split()
+            print(line)
             usb_id = usb_id[1] + usb_id[5]
             dbutil.useKey(usb_id) # returns a key but not used
             

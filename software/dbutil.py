@@ -60,6 +60,7 @@ def useKey(usb_id):
         insertKey(usb_id, key, conn)
 
     conn.close()
+    print(key)
     key = key + b'0'*(32 - len(key));
     return key
 

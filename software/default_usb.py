@@ -10,6 +10,7 @@ infile = open('usb_default_list.txt', 'r')
 for line in infile:
     usb_id = line.split(' ')
     usb_id = usb_id[1] + usb_id[5]
+    print(line)
     dbutil.insertKey(usb_id, 'default', dbutil.connect())
 infile.close()
 
