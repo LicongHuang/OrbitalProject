@@ -4,8 +4,8 @@
 import OPi.GPIO as GPIO #replaced from Ppi.GPIO as GPIO
 from time import sleep # not sure how too replace this for orange pi
 GPIO.setwarnings(False)
-
-write=13
+GPIO.setboard(GPIO.H616)
+write=12
 read=11
 
 GPIO.setmode(GPIO.BOARD) #basically choose how pin numbering system, you can choose between BCM and BOARD
@@ -19,7 +19,7 @@ GPIO.setup(write,GPIO.OUT) #basically pinMode
 ##GPIO.setup(outputs[2],GPIO.OUT) #basically pinMode
 ##GPIO.setup(outputs[3],GPIO.OUT) #basically pinMode
 
-GPIO.setup(read,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) #basically pinMode input need to set the resistor to pull up or down
+GPIO.setup(read,GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
 ##GPIO.setup(inputs[1],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
 ##GPIO.setup(inputs[2],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
 ##GPIO.setup(inputs[3],GPIO.IN,pull_up_down=GPIO.PUD_OFF) #basically pinMode input need to set the resistor to pull up or down
@@ -29,8 +29,9 @@ try:
 	while True:
 		GPIO.output(write,GPIO.HIGH)
 		if GPIO.input(read)==1:
+			print(1)
+		else:
 			print(0)
-
 
 except KeyboardInterrupt:
 	sleep(.2)
