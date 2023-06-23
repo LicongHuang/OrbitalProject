@@ -4,47 +4,119 @@
 #include <time.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "i2c.h"
+#include "lcd.h"
+#include <string.h>
+
+#define I2C_FILE_NAME "/dev/i2c-3"
+
+const char* txt[] = {
+	"Password?"
+};
+
+//void setupKeypad() {
+//	wiringpiSetupPhys();
+//	for (int i = 0; i < 3; i++) {
+//		pinMode(rows[i], OUTPUT);
+//	}
+//	for (int j = 0; j < 4; j++) {
+//		pinMode(columns[j], OUTPUT);
+//	}
+//}
 
 
-int rows[3] = {21,19,15};
-int columns[4] = {18,16,10,8};
-char KeyPad[3][4] = {{'1','2','3','4'},{'5','6','7','8'},{'9','0','#','*'}};
 
-pinMode(rows[0], OUTPUT);
-pinMode(rows[1], OUTPUT);
-pinMode(rows[2], OUTPUT);
-
-pinMode(columns[0], INPUT);
-pinMode(columns[1], INPUT);
-pinMode(columns[2], INPUT);
-pinMode(columns[3], INPUT);
-
-bool noPressOld = true;
-bool noPress = true;
-
-
-while(true) {
-	noPress = true;
-	int myRows;
-	int myColumns;
-	for(myRows = 0; myRows < 3; myRows + 1) {
-		for(myColumns = 0; myColumns < 4; myColumns + 1) {
-			digitalWrite(rows[myRows], 1);
-			int butVal = digitalRead(columns[myColumns]);
-			digitalWrite(rows[myRows], 0);
-			if (butVal == 1) {
-				char myChar = keyPad[myRows][myColumns];
-				noPress = false;
-			}
-			if (butVal == 1 && noPress == false && noPressOld == true) {
-				printf(myChar);
-			}
-		}
+int main() {
+	//printf("%s"," hello");
+	//wiringPiSetup();
+	//wiringPiSetupGpio();
+	wiringPiSetupPhys();
+	//wiringPiSetupSys();
+	
+	int i2c_dev;
+	lcd lcd0;
+	//0x27 is the address of the i2c device
+	i2c_dev = open_i2c(I2C_FILE_NAME, 0x27);
+	if (i2c_dev <0) {
+		printf("Errore: %d\n", i2c_dev);
+		return 1;
 	}
-	noPressOld = noPress;
-	usleep(.1);
+	lcd_init(&lcd0, i2c_dev);
+	lcd_clear(&lcd0);
+	lcd_print(&lcd0, txt[0], strlen(txt[0]), 0);
+
+	int rows[3] = {21,19,15};
+	int columns[4] = {18,16,10,8};
+	char keyPad[3][4] = {{'1','2','3','4'},{'5','6','7','8'},{'9','0','#','*'}};
+
+	pinMode(rows[0], OUTPUT);
+	pinMode(rows[1], OUTPUT);
+	pinMode(rows[2], OUTPUT);
+
+	pinMode(columns[0], INPUT);
+	pinMode(columns[1], INPUT);
+	pinMode(columns[2], INPUT);
+	pinMode(columns[3], INPUT);
+
+	pullUpDnControl(columns[0], PUD_UP);
+	pullUpDnControl(columns[1], PUD_UP);
+	pullUpDnControl(columns[2], PUD_UP);
+	pullUpDnControl(columns[3], PUD_UP);
+
+
+	bool noPressOld = true;
+	bool noPress = true;
+	bool* noPressOldPtr = &noPressOld;
+	bool* noPressPtr = &noPress;
+
+	char buffer[16];
+
+	//printf("%s"," begin");
+
+	while(strlen(buffer) < 6) {
+		*noPressPtr = true;
+		int myRows;
+		int myColumns;
+		char myChar;
+		int butVal;
+		for(myRows = 0; myRows < 3; myRows++) {
+			for(myColumns = 0; myColumns < 4; myColumns++) {
+				digitalWrite(rows[myRows], HIGH);
+				butVal = digitalRead(columns[myColumns]);
+				//printf("%d", butVal);
+				//char myChar;
+				digitalWrite(rows[myRows], LOW);
+
+				if (butVal == 1) {
+					myChar = keyPad[myRows][myColumns];
+					*noPressPtr = false;
+					//printf("%c", myChar);
+				}
+				//printf("%d", butVal);
+				//printf("%s", noPress ? "true" : "false");
+				//printf("%s", noPressOld ? "true" : "false");
+				printf("%c", noPress);
+
+				if (butVal == 1 && *noPressPtr == false && *noPressOldPtr == true) {
+					//printf("%c", myChar);
+					//if (strlen(buffer) == 16) {
+					//	return 0;
+					//}
+					strcat((char *)myChar, buffer);
+					//lcd_print(&lcd0, buffer, 1, 1);
+					//lcd_print(&lcd0, myChar, strlen(myChar), 1);
+				}
+			}
+			//noPressOld = noPress;
+			//usleep(200000);
+		}
+		*noPressOldPtr = noPress;
+		usleep(2000);
+	}
+	lcd_print(&lcd0, buffer, strlen(buffer), 1);
+	usleep(2000);
+	close_i2c(i2c_dev);
+	//gpio.cleanup();
+	printf("%s", "good to go");
+
 }
-
-printf("good to go");
-
-
