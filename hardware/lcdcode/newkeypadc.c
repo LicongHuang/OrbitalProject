@@ -82,12 +82,10 @@ int main() {
 					//	return 0;
 					//}
 					strcat(buffer, &myChar);
-					//lcd_print(&lcd0, buffer, 1, 1);
+					lcd_print(&lcd0, buffer, strlen(buffer), 1);
 					//lcd_print(&lcd0, myChar, strlen(myChar), 1);
 				}
 			}
-			//noPressOld = noPress;
-			//usleep(200000);
 		}
 		*noPressOldPtr = noPress;
 		usleep(2000);

@@ -1,5 +1,5 @@
 import os
-
+import newkeypadcode
 
 def check_password_file():
     if os.path.exists(".password"):
@@ -11,13 +11,18 @@ def set_password():
     if check_password_file():
         print("Password already set")
         return
-    password = input("Enter password: ")
-    
-    reenter = input("Re-enter password: ")
+    print("Enter password: ")
+
+    password = newkeypadcode.keypadInput()
+    print("Reenter password: ")
+    reenter = newkeypadcode.keypadInput()
 
     if password != reenter:
         print("Passwords do not match")
         return set_password()
+    
+    if password == None:
+        password = ""
 
     infile = open(".password", "w")
     infile.write(password)
@@ -30,7 +35,8 @@ def get_password():
     return password
 
 def check_password():
-    password = input("Enter password: ")
+    print("Enter password to login: ")
+    password = newkeypadcode.keypadInput()
     if password == get_password():
         return True
     else:
