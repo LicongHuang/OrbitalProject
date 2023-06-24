@@ -18,7 +18,7 @@ def fileWalk(path):
 # should find the usb from the usb ports
 def getUSBFilePath():
     # temp filefath
-    return "./usb_test"
+    return "/media/orangepi/766E59D76E59912B1/"
 
 def getUSBID():
     return ""
