@@ -1,8 +1,9 @@
 import passutil
+import newkeypadcode
 
 def auth():
     if passutil.check_password_file():
-        user_input = input("Enter password: ")
+        user_input = newkeypadcode.keypadInput()
         if user_input == passutil.get_password():
             print("Password accepted")
             #pass control to something else

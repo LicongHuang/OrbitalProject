@@ -6,8 +6,9 @@ import usbutil
 
 def encryptFiles():
     #conn = dbutil.connect()
-    ID = usbutil.getUSBID()
+    #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
+    ID = filepath.split('/')[-2]
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
     print('From encryptFiles: ')
@@ -24,11 +25,12 @@ def encryptFiles():
     
 def decryptFiles():
     #conn = dbutil.connect()
-    ID = usbutil.getUSBID()
+    #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
+    ID = filepath.split('/')[-2]
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
-
+    print(files)
     for file in files:
         if not file.endswith('.td'):
             continue

@@ -75,10 +75,11 @@ def getUSBFilePath():
         output = output.decode("utf-8").strip() 
     return "/media/orangepi/" + output
 
+    
 
 def getFiles():
     filepath = getUSBFilePath()
-    return fileWalk(filepath)
+    return fileWalk2(filepath)
 
 if __name__ == "__main__":
     print(getFiles())
