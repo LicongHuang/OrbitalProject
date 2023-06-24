@@ -14,24 +14,8 @@ const char* txt[] = {
 	"Password?"
 };
 
-//void setupKeypad() {
-//	wiringpiSetupPhys();
-//	for (int i = 0; i < 3; i++) {
-//		pinMode(rows[i], OUTPUT);
-//	}
-//	for (int j = 0; j < 4; j++) {
-//		pinMode(columns[j], OUTPUT);
-//	}
-//}
-
-
-
 int main() {
-	//printf("%s"," hello");
-	//wiringPiSetup();
-	//wiringPiSetupGpio();
 	wiringPiSetupPhys();
-	//wiringPiSetupSys();
 	
 	int i2c_dev;
 	lcd lcd0;
@@ -47,7 +31,8 @@ int main() {
 
 	int rows[3] = {21,19,15};
 	int columns[4] = {18,16,10,8};
-	char keyPad[3][4] = {{'1','2','3','4'},{'5','6','7','8'},{'9','0','#','*'}};
+	//char keyPad[3][4] = {{'1','2','3','4'},{'5','6','7','8'},{'9','0','#','*'}};
+	char keyPad[] = {"1234567890#"};
 
 	pinMode(rows[0], OUTPUT);
 	pinMode(rows[1], OUTPUT);
@@ -69,7 +54,7 @@ int main() {
 	bool* noPressOldPtr = &noPressOld;
 	bool* noPressPtr = &noPress;
 
-	char buffer[16];
+	char buffer[16] = {""};
 
 	//printf("%s"," begin");
 
@@ -83,26 +68,20 @@ int main() {
 			for(myColumns = 0; myColumns < 4; myColumns++) {
 				digitalWrite(rows[myRows], HIGH);
 				butVal = digitalRead(columns[myColumns]);
-				//printf("%d", butVal);
-				//char myChar;
 				digitalWrite(rows[myRows], LOW);
 
 				if (butVal == 1) {
-					myChar = keyPad[myRows][myColumns];
+					myChar = keyPad[((myRows + 1)*(myColumns + 1) -1)];
 					*noPressPtr = false;
-					//printf("%c", myChar);
 				}
-				//printf("%d", butVal);
-				//printf("%s", noPress ? "true" : "false");
-				//printf("%s", noPressOld ? "true" : "false");
-				printf("%c", noPress);
+				//printf("%c", noPress);
 
 				if (butVal == 1 && *noPressPtr == false && *noPressOldPtr == true) {
-					//printf("%c", myChar);
+					printf("%c", myChar);
 					//if (strlen(buffer) == 16) {
 					//	return 0;
 					//}
-					strcat((char *)myChar, buffer);
+					strcat(buffer, &myChar);
 					//lcd_print(&lcd0, buffer, 1, 1);
 					//lcd_print(&lcd0, myChar, strlen(myChar), 1);
 				}
@@ -116,7 +95,7 @@ int main() {
 	lcd_print(&lcd0, buffer, strlen(buffer), 1);
 	usleep(2000);
 	close_i2c(i2c_dev);
-	//gpio.cleanup();
+	//wiringPiCleanup();
 	printf("%s", "good to go");
 
 }
