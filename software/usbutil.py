@@ -19,12 +19,13 @@ def fileWalk(path):
 
 def fileWalk2(path):
     fileList = []
-
+    infile = open("filelist.txt", "w")
     command = f"ls -R {path}"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     output = output.decode("utf-8")
-    filePaths = []
-    for out in output:
+    infile.write(output)
+    infile.close()
+
         
     return output
 
