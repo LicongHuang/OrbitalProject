@@ -1,18 +1,13 @@
 import pyudev
 import os
 import dbutil
-
+import usbutil
 
 def add_usb():
-    os.system("lsusb > usb_list.txt")
-
-    with open("usb_list.txt", "r") as f:
-        for line in f:
-            usb_id = line.split()
-            print(line)
-            usb_id = usb_id[1] + usb_id[5]
-            dbutil.useKey(usb_id) # returns a key but not used
-            
+    filepath = usbutil.getUSBFilePath()
+    usb_id = filepath.split('/')[2]
+    dbutil.useKey(usb_id) # returns a key but not used
+    print("USB device added")
 
 def check_usb():
     context = pyudev.Context()

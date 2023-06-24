@@ -12,16 +12,18 @@ import wait_usb
 if __name__ == '__main__':
     if authentication.auth():
         print("Authentication successful")
-        while True:
-            wait_usb.check_usb()
+        wait_usb.check_usb()
 
         next_action = input("Encrypt or decrypt files? (e/d): ")
+        
         if next_action == 'e':
             dbutil_encrypt.encryptFiles()
             print("Encrypting files complete")
+        
         elif next_action == 'd':
             dbutil_encrypt.decryptFiles()
             print("Decrypting files complete")
+        
         else:
             print("Invalid input")
     else:

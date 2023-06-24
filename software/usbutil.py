@@ -67,11 +67,13 @@ def formatingFileList(out):
 # Will implement the function later when on the hardware
 # should find the usb from the usb ports
 def getUSBFilePath():
-    # temp filefath
-    return "/media/orangepi/"
-
-def getUSBID():
-    return ""
+    # temp filefatih
+    output = ""
+    while output == "":
+        output = subprocess.check_output('ls /media/orangepi/', shell=True)
+        print("Waiting for USB device...")
+        output = output.decode("utf-8").strip() 
+    return "/media/orangepi/" + output
 
 
 def getFiles():
@@ -79,5 +81,4 @@ def getFiles():
     return fileWalk(filepath)
 
 if __name__ == "__main__":
-    formatingFileList()
-    #print(getFiles())
+    print(getFiles())
