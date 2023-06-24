@@ -18,23 +18,57 @@ def fileWalk(path):
     return filesList
 
 def fileWalk2(path):
-    fileList = []
-    infile = open("filelist.txt", "w")
+    #infile = open("filelist.txt", "w")
+    
     command = f"ls -R {path}"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     output = output.decode("utf-8")
-    infile.write(output)
-    infile.close()
+    formatted = formatingFileList(output)
 
-        
-    return output
+    return formatted
 
+def formatFileSpaces(w):
+    f = w.split('/')
+    w = ''
+    for i in f:
+        if i == '':
+            continue
+        if ' ' in i:
+            w += '/' + '"' + i + '"'
+        else:
+            w += '/' + i
+    return w
+    
+
+def formatingFileList(out):
+    folders = out.split('\n\n')
+    filepaths = []
+
+    for i in range(len(folders)):
+        f0 = folders[i].split('\n')
+        filepath = ""
+        for f in f0:
+
+            if ":" in f:
+                filepath = formatFileSpaces(f[:-1])
+                print(filepath)
+
+            if "." not in f:
+                continue
+
+            if " " in f:
+                filepaths.append(filepath + "/" + '"' + f + '"')
+            else:
+                filepaths.append(filepath + "/" + f)
+
+    print(filepaths)
+    return filepaths
 
 # Will implement the function later when on the hardware
 # should find the usb from the usb ports
 def getUSBFilePath():
     # temp filefath
-    return "/media/orangepi2/"
+    return "/media/orangepi/"
 
 def getUSBID():
     return ""
@@ -45,4 +79,5 @@ def getFiles():
     return fileWalk(filepath)
 
 if __name__ == "__main__":
-    print(getFiles())
+    formatingFileList()
+    #print(getFiles())
