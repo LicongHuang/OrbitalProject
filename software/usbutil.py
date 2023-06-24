@@ -22,7 +22,10 @@ def fileWalk2(path):
 
     command = f"ls -R {path}"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-    output = output.decode("utf-8").split("\n")
+    output = output.decode("utf-8")
+    filePaths = []
+    for out in output:
+        
     return output
 
 

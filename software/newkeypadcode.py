@@ -39,13 +39,13 @@ def keypadInput():
                         #print(myChar)
                         noPress=False
                     
-                    if myChar == '*':
+                    if myChar == '#':
                         print();
                         return str(word);
 
                     if butVal==1 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
                         #myChar=keyPad[myRow][myColumn]
-                        print(myChar) #can change this to send to another file instead of just printing it
+                        print(myChar, end='') #can change this to send to another file instead of just printing it
                         word += str(myChar);
                         #noPress=True
             noPressOld=noPress
