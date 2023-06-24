@@ -1,4 +1,4 @@
-# Thumb Defendor
+git# Thumb Defendor
 
 This is an Orbital 2023 project by Licong and Yan Xu.
 
