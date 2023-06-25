@@ -20,7 +20,7 @@ def fileWalk(path):
 def fileWalk2(path):
     #infile = open("filelist.txt", "w")
     
-    command = f"ls -R {path}"
+    command = f"ls -R '{path}'"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     output = output.decode("utf-8")
     formatted = formatingFileList(output)
