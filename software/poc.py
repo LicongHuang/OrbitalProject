@@ -6,21 +6,24 @@ import sys
 import dbutil_encrypt
 import authentication
 import wait_usb
+import newkeypadcode
 # This is the main file for the proof of concept
 
 
 if __name__ == '__main__':
+
     if authentication.auth():
         print("Authentication successful")
         wait_usb.check_usb()
 
-        next_action = input("Encrypt or decrypt files? (e/d): ")
+        print("Encrypt or decrypt files? (1/2): ")
+        next_action = newkeypadcode.keypadInput()
         
-        if next_action == 'e':
+        if next_action == '1':
             dbutil_encrypt.encryptFiles()
             print("Encrypting files complete")
         
-        elif next_action == 'd':
+        elif next_action == '2':
             dbutil_encrypt.decryptFiles()
             print("Decrypting files complete")
         

@@ -24,5 +24,4 @@ def check_usb():
 
 
 if __name__ == "__main__":
-    while True:
-        check_usb()
+    check_usb()
