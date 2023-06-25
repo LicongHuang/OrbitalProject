@@ -50,6 +50,7 @@ def makeEncryptedFile2(filename, ciphertext):
     makefile.write(ciphertext)
     makefile.close()
     os.system(f"sudo mv {filepath}.td {filename}.td")
+    os.system(f"sudo rm {filepath}")
 
 def makeDecryptedFile(filename, plaintext):
     # TODO make the function actually working
