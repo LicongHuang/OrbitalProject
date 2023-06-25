@@ -21,8 +21,9 @@ def encryptFiles():
         output = subprocess.check_output(command, shell=True)
         #binfile = open(file, mode="rb").read()
         ciphertext = encryption.encryption(key, output)
-        encryption.makeEncryptedFile(file, ciphertext)
-        encryption.removeFile(file)
+
+        encryption.makeEncryptedFile2(file, ciphertext)
+        encryption.removeFile2(file)
     print("Completed encryption")
     #dbutil.disconnect(conn)
     
@@ -37,10 +38,12 @@ def decryptFiles():
     for file in files:
         if not file.endswith('.td'):
             continue
-        binfile = open(file, mode="rb").read()
-        plaintext = encryption.decryption(key, binfile)
-        encryption.makeDecryptedFile(file, plaintext)
-        encryption.removeFile(file)
+        command = "cat " + file
+        output = subprocess.check_output(command, shell=True)
+        #binfile = open(file, mode="rb").read()
+        plaintext = encryption.decryption(key, output) #previously output is binfile
+        encryption.makeDecryptedFile2(file, plaintext)
+        encryption.removeFile2(file)
     print("Completed decryption")
     dbutil.deleteUSB(ID, dbutil.connect()) 
     #dbutil.disconnect(conn)

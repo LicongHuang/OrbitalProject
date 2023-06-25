@@ -43,6 +43,13 @@ def makeEncryptedFile(filename, ciphertext):
     f.write(ciphertext) 
     f.close()
 
+def makeEncryptedFile2(filename, ciphertext):
+    filepath = f"{filename}"
+    filepath = '~/'+filepath.split('/')[-1]
+    makefile = open(filepath + ".td", mode="wb")
+    makefile.write(ciphertext)
+    makefile.close()
+    os.system(f"mv {filepath}.td {filename}.td")
 
 def makeDecryptedFile(filename, plaintext):
     # TODO make the function actually working
@@ -53,6 +60,14 @@ def makeDecryptedFile(filename, plaintext):
     f.write(plaintext) 
     f.close()
 
+def makeDecryptedFile2(filename, plaintext):
+    filepath = f"{filename[:-3]}"
+    filepath = '~/'+filepath.split('/')[-1]
+    makefile = open(filepath, mode="wb")
+    makefile.write(plaintext)
+    makefile.close()
+    os.system(f"mv {filepath} {filename[:-3]}")
+
 def removeFile(filename):
     # TODO make the function actually working
     if os.path.exists(filename):
@@ -61,5 +76,11 @@ def removeFile(filename):
     else:
         print("The file does not exist")
     
+def removeFile2(filename):
+    if os.path.exists(filename):
+        os.system('rm ' + filename)
+        print("The file was removed")
+    else:
+        print("The file does not exist")
 
 
