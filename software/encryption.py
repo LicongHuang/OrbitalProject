@@ -49,7 +49,7 @@ def makeEncryptedFile2(filename, ciphertext):
     makefile = open(filepath + ".td", mode="wb")
     makefile.write(ciphertext)
     makefile.close()
-    os.system(f"mv {filepath}.td {filename}.td")
+    os.system(f"sudo mv {filepath}.td {filename}.td")
 
 def makeDecryptedFile(filename, plaintext):
     # TODO make the function actually working
@@ -66,7 +66,7 @@ def makeDecryptedFile2(filename, plaintext):
     makefile = open(filepath, mode="wb")
     makefile.write(plaintext)
     makefile.close()
-    os.system(f"mv {filepath} {filename[:-3]}")
+    os.system(f"sudo mv {filepath} {filename[:-3]}")
 
 def removeFile(filename):
     # TODO make the function actually working
