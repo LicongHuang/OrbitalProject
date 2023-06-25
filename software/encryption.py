@@ -68,6 +68,7 @@ def makeDecryptedFile2(filename, plaintext):
     makefile.write(plaintext)
     makefile.close()
     os.system(f"sudo mv {filepath} {filename[:-3]}")
+    os.system(f"sudo rm {filename}")
 
 def removeFile(filename):
     # TODO make the function actually working
