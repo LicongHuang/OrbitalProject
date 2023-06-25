@@ -45,7 +45,7 @@ def makeEncryptedFile(filename, ciphertext):
 
 def makeEncryptedFile2(filename, ciphertext):
     filepath = f"{filename}"
-    filepath = '~/'+filepath.split('/')[-1]
+    filepath = '/home/orangepi/'+filepath.split('/')[-1]
     makefile = open(filepath + ".td", mode="wb")
     makefile.write(ciphertext)
     makefile.close()
@@ -62,7 +62,7 @@ def makeDecryptedFile(filename, plaintext):
 
 def makeDecryptedFile2(filename, plaintext):
     filepath = f"{filename[:-3]}"
-    filepath = '~/'+filepath.split('/')[-1]
+    filepath = '/home/orangepi/'+filepath.split('/')[-1]
     makefile = open(filepath, mode="wb")
     makefile.write(plaintext)
     makefile.close()
