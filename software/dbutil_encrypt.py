@@ -1,6 +1,7 @@
 import dbutil
 import encryption
 import usbutil
+import shutil
 
 
 
@@ -16,9 +17,12 @@ def encryptFiles():
     for file in files:
         if file.endswith('.td'):
             continue
-        binfile = open(file, mode="rb").read()
+        newfile = "~/OrbitalProject/software/usb_test" + file.split('/')[-1]
+        shutil.copy(file, newfile)
+        binfile = open(newfile, mode="rb").read()
         ciphertext = encryption.encryption(key, binfile)
         encryption.makeEncryptedFile(file, ciphertext)
+        encryption.removeFile(file)
         encryption.removeFile(file)
     print("Completed encryption")
     #dbutil.disconnect(conn)
