@@ -20,7 +20,7 @@ def encryptFiles():
         command = "cat " + file
         output = subprocess.check_output(command, shell=True)
         #binfile = open(file, mode="rb").read()
-        ciphertext = encryption.encryption(key, output)
+        ciphertext = encryption.encryption2(key, output)
 
         encryption.makeEncryptedFile2(file, ciphertext)
         encryption.removeFile2(file)
@@ -41,7 +41,7 @@ def decryptFiles():
         command = "cat " + file
         output = subprocess.check_output(command, shell=True)
         #binfile = open(file, mode="rb").read()
-        plaintext = encryption.decryption(key, output) #previously output is binfile
+        plaintext = encryption.decryption2(key, output) #previously output is binfile
         encryption.makeDecryptedFile2(file, plaintext)
         encryption.removeFile2(file)
     print("Completed decryption")

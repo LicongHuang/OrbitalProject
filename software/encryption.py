@@ -25,12 +25,37 @@ def encryption(key, file):
     ciphertext = cipher.encrypt(plaintext)
     return ciphertext
 
+def encryption2(key, file):
+    cipher = nacl.secret.SecretBox(key)
+    plaintext = file
+    byte_size = 1024
+    num_chunks = len(plaintext) // byte_size + 1 * (len(plaintext) % byte_size != 0)
+    segments = [plaintext[i*byte_size:(i+1)*byte_size] for i in range(num_chunks)]
+    segments[-1] = segments[-1] + b'\x00' * (byte_size - len(segments[-1]))
+    encrypted_segments = [cipher.encrypt(segment) for segment in segments]
+    print(len(encrypted_segments[0]) == len(cipher.decrypt(cipher.encrypt(encrypted_segments[0]))))
+    same_len = True;
+    for i in range(len(encrypted_segments)):
+        if len(encrypted_segments[i]) != len(encrypted_segments[0]):
+            same_len = False
+    print(same_len)
+    return b''.join(encrypted_segments)
+
 # This is a function to decrypt the file
 # file: the file to be decrypted
 def decryption(key, file):
     cipher = nacl.secret.SecretBox(key)
     plaintext = cipher.decrypt(file)
     return plaintext 
+
+def decryption2(key, file):
+    cipher = nacl.secret.SecretBox(key)
+    byte_size = 1064
+    num_chunks = len(file) // byte_size + 1 * (len(file) % byte_size != 0)
+    segments = [file[i*byte_size:(i+1)*byte_size] for i in range(num_chunks)]
+    segments[-1] = segments[-1] + b'\x00' * (byte_size - len(segments[-1]))
+    decrypted_segments = [cipher.decrypt(segment) for segment in segments]
+    return b''.join(decrypted_segments)
 
 # This is a function to make the file
 # filename: the name of the file

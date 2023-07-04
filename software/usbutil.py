@@ -36,7 +36,7 @@ def formatFileSpaces(w):
         if i == '':
             continue
         if ' ' in i:
-            w += '/' + '"' + i + '"'
+            w += '/' + "'" + i + "'"
         else:
             w += '/' + i
     return w
