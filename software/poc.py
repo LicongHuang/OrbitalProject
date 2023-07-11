@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
             print("Encrypt or decrypt files? (1/2): ")
             next_action = newkeypadcode.keypadInput()
-            
+            print("Next input:", next_action)            
             if next_action == '1':
                 dbutil_encrypt.encryptFiles()
                 print("Encrypting files complete")
