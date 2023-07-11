@@ -127,3 +127,15 @@ int set_i2c_data(int dev, unsigned char val) {
     return 0;
 }
 
+void display_lcd(char* text){
+    lcd l;
+    int dev = open_i2c("/dev/i2c-3", 0x27);
+    if (dev < 0) {
+        printf("Error: Couldn't open device! %d\n", dev);
+        exit (1);
+    }
+    lcd_init(&l, dev);
+    lcd_clear(&l);
+    lcd_print(&l, text, strlen(text), 0);
+    close_i2c(dev);
+}
