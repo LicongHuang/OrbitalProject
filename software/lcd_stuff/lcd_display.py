@@ -1,4 +1,7 @@
 from ctypes import *
+import os
+
+print(os.environ)
 
 myFunct = CDLL('./kp.so')
 myFunct.display_lcd.argtypes = [c_char_p]
