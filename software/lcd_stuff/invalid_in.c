@@ -13,8 +13,7 @@
 #define I2C_FILE_NAME "/dev/i2c-3"
 
 const char* txt[]  = {
-    "Password?",
-    "here:"
+    "Invalid Input"
 };
 
 
@@ -38,7 +37,7 @@ int main(){
   lcd lcd0;
   lcd_clear(&lcd0);
   display_letter((char*) txt[0], 0);
-  display_letter((char*) txt[1], 1);
+  //display_letter((char*) txt[1], 1);
   return 0;
 
 }
