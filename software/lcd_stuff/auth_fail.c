@@ -30,7 +30,7 @@ int main(){
     }
 
     lcd_init(&lcd0, i2c_dev);
-    //lcd_clear(&lcd0);
+    lcd_clear(&lcd0);
     lcd_print(&lcd0, txt[0], strlen(txt[0]), 0);
     lcd_print(&lcd0, txt[1], strlen(txt[1]), 1);
     close_i2c(i2c_dev);
