@@ -7,34 +7,46 @@ import dbutil_encrypt
 import authentication
 import wait_usb
 import newkeypadcode
-# This is the main file for the proof of concept
+import software.lcd_stuff.lcd_display as lcd
 
 
 if __name__ == '__main__':
     try:
         if authentication.auth():
             print("Authentication successful")
-            wait_usb.check_usb2()
+            lcd.auth_display();
 
+            wait_usb.check_usb2() #<-- change this needs to loop until plugged in
+
+            lcd.en_or_de();
             print("Encrypt or decrypt files? (1/2): ")
+            
             next_action = newkeypadcode.keypadInput()
+            
+            lcd.next_in();
             print("Next input:", next_action)            
+            
             if next_action == '1':
                 dbutil_encrypt.encryptFiles()
                 print("Encrypting files complete")
+                lcd.en_com();
             
             elif next_action == '2':
                 dbutil_encrypt.decryptFiles()
                 print("Decrypting files complete")
+                lcd.de_com();
             
             else:
                 print("Invalid input")
+                lcd.invalid_in();
         else:
             print("Authentication failed")
+            lcd.auth_fail();
             sys.exit(1)
 
     except KeyboardInterrupt:
         print("Exiting...")
+        lcd.exit_c();
         sys.exit(1)
 
     except Exception as e:
