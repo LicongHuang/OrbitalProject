@@ -7,6 +7,7 @@ import dbutil_encrypt
 import authentication
 import wait_usb
 import newkeypadcode
+import subprocess
 
 import sys
 sys.path.append('/home/orangepi/OrbitalProject')
@@ -49,7 +50,13 @@ def poc():
 
     except Exception as e:
         print(e)
+
         sys.exit(1)
+    
+    finally:
+        output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+        output = output.decode('utf-8')
+        ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
 
 
 
