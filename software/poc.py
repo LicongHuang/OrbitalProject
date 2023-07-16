@@ -42,6 +42,10 @@ def poc():
         else:
             print("Invalid input")
             lcd.invalid_in();
+        
+        output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+        output = output.decode('utf-8')
+        ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
 
     except KeyboardInterrupt:
         print("Exiting...")
@@ -51,12 +55,9 @@ def poc():
     except Exception as e:
         print(e)
 
-        sys.exit(1)
+        #sys.exit(1)
     
-    finally:
-        output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
-        output = output.decode('utf-8')
-        ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
+
 
 
 

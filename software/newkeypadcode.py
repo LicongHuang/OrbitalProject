@@ -40,8 +40,9 @@ def keypadInput():
                         noPress=False
                     
                     if myChar == '#':
-                        print("Returning the word:", str(word));
-                        return str(word);
+                        print();
+                        #return str(word);
+                        continue
 
                     if butVal==1 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
                         #myChar=keyPad[myRow][myColumn]
@@ -55,3 +56,6 @@ def keypadInput():
         sleep(.2)
         GPIO.cleanup()
         print('GPIO Good to Go')
+
+    finally:
+        return str(word)
