@@ -7,6 +7,9 @@ import dbutil_encrypt
 import authentication
 import wait_usb
 import newkeypadcode
+
+import sys
+sys.path.append('~/OrbitalProject')
 import software.lcd_stuff.lcd_display as lcd
 
 
@@ -48,16 +51,9 @@ def poc():
         print(e)
         sys.exit(1)
 
-#    todo = sys.argv[1]
-#    if todo == 'e':
-#        dbutil_encrypt.encryptFiles()
-#        print("Encrypting files complete")
-#    elif todo == 'd':
-#        dbutil_encrypt.decryptFiles()
-#        print("Decrypting files complete")
 
 
-if __name__ == '__main__':
+def main():
     while True:
         if authentication():
             print("Successful authentication")
@@ -67,3 +63,6 @@ if __name__ == '__main__':
         else:
             print("Authentication failed")
             lcd.auth_fail();
+
+if __name__ == '__main__':
+    main();
