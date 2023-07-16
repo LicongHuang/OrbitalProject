@@ -10,39 +10,34 @@ import newkeypadcode
 import software.lcd_stuff.lcd_display as lcd
 
 
-if __name__ == '__main__':
+def authenticate():
+    return authentication.auth();
+
+def poc():
     try:
-        if authentication.auth():
-            print("Authentication successful")
-            lcd.auth_display();
+        wait_usb.check_usb2()
 
-            wait_usb.check_usb2() #<-- change this needs to loop until plugged in
-
-            lcd.en_or_de();
-            print("Encrypt or decrypt files? (1/2): ")
-            
-            next_action = newkeypadcode.keypadInput()
-            
-            lcd.next_in();
-            print("Next input:", next_action)            
-            
-            if next_action == '1':
-                dbutil_encrypt.encryptFiles()
-                print("Encrypting files complete")
-                lcd.en_com();
-            
-            elif next_action == '2':
-                dbutil_encrypt.decryptFiles()
-                print("Decrypting files complete")
-                lcd.de_com();
-            
-            else:
-                print("Invalid input")
-                lcd.invalid_in();
+        lcd.en_or_de();
+        print("Encrypt or decrypt files? (1/2): ")
+        
+        next_action = newkeypadcode.keypadInput()
+        
+        lcd.next_in();
+        print("Next input:", next_action)            
+        
+        if next_action == '1':
+            dbutil_encrypt.encryptFiles()
+            print("Encrypting files complete")
+            lcd.en_com();
+        
+        elif next_action == '2':
+            dbutil_encrypt.decryptFiles()
+            print("Decrypting files complete")
+            lcd.de_com();
+        
         else:
-            print("Authentication failed")
-            lcd.auth_fail();
-            sys.exit(1)
+            print("Invalid input")
+            lcd.invalid_in();
 
     except KeyboardInterrupt:
         print("Exiting...")
@@ -62,3 +57,13 @@ if __name__ == '__main__':
 #        print("Decrypting files complete")
 
 
+if __name__ == '__main__':
+    while True:
+        if authentication():
+            print("Successful authentication")
+            lcd.auth_display();
+            poc();
+
+        else:
+            print("Authentication failed")
+            lcd.auth_fail();
