@@ -55,7 +55,7 @@ def poc():
 
 def main():
     while True:
-        if authentication():
+        if authenticate():
             print("Successful authentication")
             lcd.auth_display();
             poc();
