@@ -9,7 +9,7 @@ import wait_usb
 import newkeypadcode
 
 import sys
-sys.path.append('~/OrbitalProject')
+sys.path.append('/home/orangepi/OrbitalProject')
 import software.lcd_stuff.lcd_display as lcd
 
 

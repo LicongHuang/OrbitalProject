@@ -40,7 +40,7 @@ def keypadInput():
                         noPress=False
                     
                     if myChar == '#':
-                        print();
+                        print("Returning the word:", str(word));
                         return str(word);
 
                     if butVal==1 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
