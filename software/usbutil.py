@@ -25,7 +25,6 @@ def fileWalk2(path):
     command = f"ls -R {path}"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     output = output.decode("utf-8")
-    print('\n\n' + output + '\n\n')
     formatted = formatingFileList(output)
     #print(formatted)
     return formatted
@@ -75,7 +74,7 @@ def getUSBFilePath():
         output = subprocess.check_output('ls /media/orangepi/', shell=True)
         print("Waiting for USB device...")
         output = output.decode("utf-8").strip() 
-    return "/media/orangepi/usb"
+    return "/media/orangepi/'{}'".format(output)
 
     
 
