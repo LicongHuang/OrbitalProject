@@ -19,7 +19,7 @@ def check_usb():
             print('{} connected'.format(device))
             #Making a mounting point
             os.system("sudo mkdir /media/orangepi/{}".format(device.sys_name))
-            os.system("sudo mount /dev/sda1 /media/orangepi/{}".format(device.sys_name))
+            os.system("sudo mount /dev/sda /media/orangepi/{}".format(device.sys_name))
             
             add_usb()
             return
