@@ -16,8 +16,11 @@ def check_usb():
     monitor = pyudev.Monitor.from_netlink(context)
     monitor.filter_by(subsystem='usb')
 
+    os.system("sudo mkdir /media/orangepi/usb")
+    
     # Check if USB is already mounted
     osout = os.system("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'")
+    os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if osout == 0:
         add_usb()
         return
@@ -27,8 +30,7 @@ def check_usb():
         if device.action == 'add':
             print('{} connected'.format(device))
             #Making a mounting point
-            os.system("sudo mkdir /media/orangepi/usb")
-            os.system("sudo mount /dev/sda /media/orangepi/usb")
+            os.system("sudo mount /dev/sda1 /media/orangepi/usb")
             
             add_usb()
             return
