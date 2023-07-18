@@ -2,6 +2,7 @@ import pyudev
 import subprocess
 import dbutil
 import usbutil
+import os
 
 def add_usb():
     filepath = usbutil.getUSBFilePath()
@@ -16,6 +17,10 @@ def check_usb():
     for device in iter(monitor.poll, None):
         if device.action == 'add':
             print('{} connected'.format(device))
+            #Making a mounting point
+            os.system("sudo mkdir /media/orangepi/{}".format(device.sys_name))
+            os.system("sudo mount /dev/sda1 /media/orangepi/{}".format(device.sys_name))
+            
             add_usb()
             return
         elif device.action == 'remove':
@@ -42,4 +47,4 @@ def check_usb2():
 
 
 if __name__ == "__main__":
-    check_usb2()
+    check_usb()

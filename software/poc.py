@@ -14,7 +14,7 @@ if __name__ == '__main__':
     try:
         if authentication.auth():
             print("Authentication successful")
-            wait_usb.check_usb2()
+            wait_usb.check_usb()
 
             print("Encrypt or decrypt files? (1/2): ")
             next_action = newkeypadcode.keypadInput()
