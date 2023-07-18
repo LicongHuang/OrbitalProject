@@ -30,22 +30,22 @@ def check_usb():
         elif device.action == 'remove':
             print('{} disconnected'.format(device))
 
-def check_usb2():
-    while True:
-        try:
-            output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
-            output = output.decode('utf-8')
-            print(output)
-            ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
-            if output:
-                add_usb()
-                return
-    
-        except subprocess.CalledProcessError:
-            print("No USB device found")
-    
-    #finally:
-    #    check_usb()
+#def check_usb2():
+#    while True:
+#        try:
+#            output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+#            output = output.decode('utf-8')
+#            print(output)
+#            ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
+#            if output:
+#                add_usb()
+#                return
+#    
+#        except subprocess.CalledProcessError:
+#            print("No USB device found")
+#    
+#    #finally:
+#    #    check_usb()
 
 
 
