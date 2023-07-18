@@ -22,8 +22,8 @@ def check_usb():
         if device.action == 'add':
             print('{} connected'.format(device))
             #Making a mounting point
-            os.system("sudo mkdir /media/orangepi/{}".format(device.sys_name))
-            os.system("sudo mount /dev/sda /media/orangepi/{}".format(device.sys_name))
+            os.system("sudo mkdir /media/orangepi/usb")
+            os.system("sudo mount /dev/sda /media/orangepi/usb")
             
             add_usb()
             return

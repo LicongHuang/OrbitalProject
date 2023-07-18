@@ -45,7 +45,7 @@ def poc():
         
         output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
         output = output.decode('utf-8')
-        ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
+        ret = subprocess.check_output("sudo umount /dev/sda".format(output), shell=True)
 
     except KeyboardInterrupt:
         print("Exiting...")
