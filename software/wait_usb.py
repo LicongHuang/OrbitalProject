@@ -22,7 +22,7 @@ def check_usb():
     osout = os.system("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'")
     print("lsblk output: ",osout)
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
-    print("mounted")
+    print(mounted)
     if mounted == 0:
         add_usb()
         return
