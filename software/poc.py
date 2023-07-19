@@ -44,6 +44,7 @@ def poc():
             lcd.invalid_in();
         
         ret = subprocess.check_output("sudo umount /dev/sda1", shell=True)
+        return True;
 
     except KeyboardInterrupt:
         print("Exiting...")
@@ -52,7 +53,7 @@ def poc():
 
     except Exception as e:
         print(e)
-
+        return True;
         #sys.exit(1)
     
 
@@ -61,6 +62,7 @@ def poc():
 
 def main():
     while True:
+        print("Starting Program Up")
         if authenticate():
             print("Successful authentication")
             lcd.auth_display();
