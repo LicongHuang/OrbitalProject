@@ -7,4 +7,6 @@
 python3 DataBase.py
 #python3 poc.py
 python3 test_thumb_def.py
-python3 authentication.py
+#python3 authentication.py
+#
+python3 poc.py
