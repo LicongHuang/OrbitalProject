@@ -22,11 +22,13 @@ def insertKey(usb_id, key, conn):
     #TODO : TRY-CATCH 
     c = conn.cursor()
     c.execute("INSERT INTO passcode VALUES (?, ?)", (usb_id, key))
-    conn.commit()
+    print(f" New key, {usb_id} inserted")
+    conn.commit()   
 
 def deleteUSB(usb_id, conn):
     c = conn.cursor()
     c.execute("DELETE FROM passcode WHERE usb_id = ?", (usb_id,))
+    print(f"Successfully deleted {usb_id}")
     conn.commit()
 
 def connect():

@@ -19,7 +19,7 @@ def authenticate():
 
 def poc():
     try:
-        wait_usb.check_usb2()
+        wait_usb.check_usb()
 
         lcd.en_or_de();
         print("Encrypt or decrypt files? (1/2): ")
@@ -43,10 +43,8 @@ def poc():
             print("Invalid input")
             lcd.invalid_in();
         
-        output = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
-        output = output.decode('utf-8')
-        print("End")
-        ret = subprocess.check_output("sudo umount {}".format(output), shell=True)
+        ret = subprocess.check_output("sudo umount /dev/sda1", shell=True)
+        return True;
 
     except KeyboardInterrupt:
         print("Exiting...")
@@ -55,7 +53,7 @@ def poc():
 
     except Exception as e:
         print(e)
-
+        return True;
         #sys.exit(1)
     
 
@@ -64,6 +62,7 @@ def poc():
 
 def main():
     while True:
+        print("Starting Program Up")
         if authenticate():
             print("Successful authentication")
             lcd.auth_display();

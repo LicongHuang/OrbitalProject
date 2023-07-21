@@ -35,13 +35,14 @@ def decryptFiles():
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
     print(files)
+    print("ID for key: ", ID)
     for file in files:
         if not file.endswith('.td'):
             continue
         command = "cat " + file
         output = subprocess.check_output(command, shell=True)
         #binfile = open(file, mode="rb").read()
-        plaintext = encryption.decryption2(key, output) #previously output is binfile
+        plaintext = encryption.decryption(key, output) #previously output is binfile
         encryption.makeDecryptedFile2(file, plaintext)
         encryption.removeFile2(file)
     print("Completed decryption")
