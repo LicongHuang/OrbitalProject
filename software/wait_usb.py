@@ -12,9 +12,9 @@ def add_usb(usb_id):
     print(f"{usb_id} device added")
 
 def getIdentifier():
-    osout = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+    osout = subprocess.run("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True, capture_output=True)
     a = osout.decode("utf-8")
-    print(a)
+    print("osout: ",a)
     return a;
 
 def check_usb():
@@ -26,6 +26,7 @@ def check_usb():
     
     # Check if USB is already mounted
     a = getIdentifier()
+
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if mounted == 0:
         add_usb(a)
