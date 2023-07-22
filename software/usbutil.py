@@ -94,7 +94,7 @@ def getFileInMedia():
     print("The file path is " , filepaths)
     filepaths = filepaths.split('\n')
     for filepath in filepaths:
-        if "/" in filepath:
+        if not "usb" in filepath:
             print(filepath)
             return filepath
     

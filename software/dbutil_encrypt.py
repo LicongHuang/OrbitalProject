@@ -31,7 +31,7 @@ def decryptFiles():
     #conn = dbutil.connect()
     #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
-    ID = usbutil.getFileInMedia().split('\n')[-1];
+    ID = usbutil.getFileInMedia().split('/')[-1];
     print("This id is: ", ID)
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
