@@ -4,7 +4,7 @@ import dbutil
 import usbutil
 import os
 
-def add_usb():
+def add_usb(usb_id):
     filepath = usbutil.getFileInMedia()
     usb_id = filepath.split('/')[-1]
     print(usb_id)
@@ -19,7 +19,9 @@ def check_usb():
     os.system("sudo mkdir /media/orangepi/usb")
     
     # Check if USB is already mounted
-    osout = os.system("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'")
+    osout = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+    a = osout.decode('utf-8')
+    print(a)
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if mounted == 0:
         add_usb()
@@ -32,7 +34,7 @@ def check_usb():
             #Making a mounting point
             os.system("sudo mount /dev/sda1 /media/orangepi/usb")
             
-            add_usb()
+            add_usb(a)
             return
         elif device.action == 'remove':
             print('{} disconnected'.format(device))
