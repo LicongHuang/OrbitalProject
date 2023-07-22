@@ -96,6 +96,8 @@ def getFileInMedia():
     for filepath in filepaths:
         if "/" in filepath:
             print(filepath)
+            return filepath
+    
 
 if __name__ == "__main__":
     #print(getFiles())
