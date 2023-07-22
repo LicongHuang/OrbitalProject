@@ -5,7 +5,7 @@ import usbutil
 import os
 
 def add_usb():
-    filepath = usbutil.getUSBFilePath()
+    filepath = usbutil.getFileInMedia()
     usb_id = filepath.split('/')[-1]
     print(usb_id)
     dbutil.useKey(usb_id) # returns a key but not used
