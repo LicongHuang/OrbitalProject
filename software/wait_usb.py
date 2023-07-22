@@ -24,7 +24,7 @@ def check_usb():
     print(a)
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if mounted == 0:
-        add_usb()
+        add_usb(a)
         return
     
     # Wait for USB to be plugged in
