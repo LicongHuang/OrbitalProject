@@ -87,5 +87,12 @@ def getFiles():
     filepath = "/media/orangepi/usb"
     return fileWalk2(filepath)
 
+
+def getFileInMedia():
+    files = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i /media/orangepi/")
+    filepaths = files.encode('utf-8');
+    print(filepaths)
+
 if __name__ == "__main__":
-    print(getFiles())
+    #print(getFiles())
+    print(getFileInMedia())
