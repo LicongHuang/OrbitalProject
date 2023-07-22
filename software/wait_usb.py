@@ -6,10 +6,10 @@ import os
 
 def add_usb():
     filepath = usbutil.getUSBFilePath()
-    usb_id = filepath.split('/')[2]
+    usb_id = filepath.split('/')[-1]
     print(usb_id)
     dbutil.useKey(usb_id) # returns a key but not used
-    print("USB device added")
+    print(f"{usb_id} device added")
 
 def check_usb():
     context = pyudev.Context()
@@ -20,9 +20,7 @@ def check_usb():
     
     # Check if USB is already mounted
     osout = os.system("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'")
-    print("lsblk output: ",osout)
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
-    print(mounted)
     if mounted == 0:
         add_usb()
         return

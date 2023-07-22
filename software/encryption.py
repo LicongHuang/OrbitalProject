@@ -33,12 +33,12 @@ def encryption2(key, file):
     segments = [plaintext[i*byte_size:(i+1)*byte_size] for i in range(num_chunks)]
     segments[-1] = segments[-1] + b'\x00' * (byte_size - len(segments[-1]))
     encrypted_segments = [cipher.encrypt(segment) for segment in segments]
-    print(len(encrypted_segments[0]) == len(cipher.decrypt(cipher.encrypt(encrypted_segments[0]))))
+    #print(len(encrypted_segments[0]) == len(cipher.decrypt(cipher.encrypt(encrypted_segments[0]))))
     same_len = True;
     for i in range(len(encrypted_segments)):
         if len(encrypted_segments[i]) != len(encrypted_segments[0]):
             same_len = False
-    print(same_len)
+    #print(same_len)
     return b''.join(encrypted_segments)
 
 # This is a function to decrypt the file
