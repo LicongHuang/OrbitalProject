@@ -74,7 +74,7 @@ def getUSBFilePath():
         output = subprocess.check_output('ls /media/orangepi/', shell=True)
         print("Waiting for USB device...")
         output = output.decode("utf-8").strip() 
-    return "/media/orangepi/'{}'".format(output)
+    return "/media/orangepi/usb/'{}'".format(output)
 
     
 
