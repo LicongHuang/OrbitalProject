@@ -47,6 +47,9 @@ def decryptFiles():
         encryption.makeDecryptedFile2(file, plaintext)
         encryption.removeFile2(file)
     print("Completed decryption")
-    #dbutil.deleteUSB(ID, dbutil.connect()) 
+    #dbutil.deleteUSB(ID, dbutil.connect())
+    #The orangepi is not able to get the unique ID of the USB due to some bug
+    # When unit testing, the file is able to produce an identifier of the USB
+    # When running as a whole, I was not able to get the identifier of the USB
     #dbutil.disconnect(conn)
 

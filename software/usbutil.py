@@ -55,7 +55,8 @@ def formatingFileList(out):
                 filepath = formatFileSpaces(f[:-1])
 
             if "." not in f:
-                continue
+                filepaths.append(filepath + "/" + f)
+                #continue
 
             if " " in f:
                 filepaths.append(filepath + "/" + '"' + f + '"')
