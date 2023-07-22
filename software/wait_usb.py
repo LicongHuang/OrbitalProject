@@ -20,7 +20,7 @@ def check_usb():
     
     # Check if USB is already mounted
     osout = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
-    a = osout.decode('utf-8')
+    a = osout.decode("utf-8")
     print(a)
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if mounted == 0:
