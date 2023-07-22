@@ -44,7 +44,6 @@ def encryption2(key, file):
 # This is a function to decrypt the file
 # file: the file to be decrypted
 def decryption(key, file):
-    print("Using Key:", key)
     cipher = nacl.secret.SecretBox(key)
     plaintext = cipher.decrypt(file)
     return plaintext 
@@ -110,5 +109,16 @@ def removeFile2(filename):
         print("The file was removed")
     else:
         print("The file does not exist")
+
+
+if __name__ == '__main__':
+    import keygen
+    this_key = keygen.genKey()
+    some_key = this_key + b'\x00' * (32 - len(this_key))
+    t = encryption2(some_key, open("./usb_test/test.txt", mode="rb").read())
+    makeEncryptedFile("./usb_test/test.txt", t)
+    print(t)
+    print(decryption2(some_key, open("./usb_test/test.txt.td", mode="rb").read()))
+
 
 
