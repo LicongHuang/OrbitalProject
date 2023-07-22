@@ -44,6 +44,7 @@ def encryption2(key, file):
 # This is a function to decrypt the file
 # file: the file to be decrypted
 def decryption(key, file):
+    print("Using Key:", key)
     cipher = nacl.secret.SecretBox(key)
     plaintext = cipher.decrypt(file)
     return plaintext 
