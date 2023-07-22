@@ -25,10 +25,9 @@ def keypadInput():
     noPress=True
     word = ""
     myChar = ""
-    bufferCount = 0
     try:
     #loop through all the rows then columns. If the signal is detected , check the active column and row to deduct the keystroke and print out the keystroke
-        while bufferCount < 9:
+        while True:
             noPress=True
             for myRow in [0,1,2]:
                 for myColumn in [0,1,2,3]:
@@ -39,46 +38,20 @@ def keypadInput():
                         myChar=keyPad[myRow][myColumn]
                         #print(myChar)
                         noPress=False
+                    
+                    if myChar == '#':
+                        print();
+                        return str(word);
 
-                        if noPress == False and noPressOld == True:
-                            if myChar == '*':
-                                word = ''
-                                print("word is deleted")
-                                #if bufferCount > 0:
-                                    #word[bufferCount - 1] = ' '
-                                    #bufferCount -= 1
-                                    #print(word)
-                                #else:
-                                    #bufferCount = 0
-                                    #word = ' '
-                                    #print(word)
-                            elif myChar == '#':
-                                print(word);
-                                sleep(0.2)
-                                return str(word);
-
-                            else: #if butVal==1 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
-                                #myChar=keyPad[myRow][myColumn]
-                                print(myChar) #can change this to send to another file instead of just printing it
-                                word += str(myChar)
-                                bufferCount += 1
-                                print(word)
-                                #noPress=True
+                    if butVal==1 and noPress==False and noPressOld==True: #check if the button is pressed the first time. to prevent spamming
+                        #myChar=keyPad[myRow][myColumn]
+                        print(myChar) #can change this to send to another file instead of just printing it
+                        word += str(myChar);
+                        #noPress=True
             noPressOld=noPress
-            sleep(0.2)
-        #print(word)
-        sleep(0.2)
-        return word
+            sleep(.1)
 
     except KeyboardInterrupt:
         sleep(.2)
         GPIO.cleanup()
         print('GPIO Good to Go')
-
-
-def main():
-    keypadInput()
-
-if __name__ == "__main__":
-    main()
-
