@@ -1,3 +1,4 @@
+#!/bin/sh
 import os
 
 def auth_fail():
