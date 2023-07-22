@@ -13,9 +13,9 @@ def add_usb(usb_id):
 
 def getIdentifier():
     osout = subprocess.run("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True, capture_output=True)
-    a = osout.decode("utf-8")
-    print("osout: ",a)
-    return a;
+    #a = osout.decode("utf-8")
+    print("osout: ",osout)
+    return 0;
 
 def check_usb():
     context = pyudev.Context()
