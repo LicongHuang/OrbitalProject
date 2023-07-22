@@ -12,11 +12,10 @@ def add_usb(usb_id):
     print(f"{usb_id} device added")
 
 def getIdentifier():
-    osout = subprocess.run("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True, capture_output=True)
-    #a = osout.decode("utf-8")
+    osout = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
+    a = osout.decode("utf-8")
     print("osout: ",osout)
-    return 0;
-
+    return a;
 def check_usb():
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)
