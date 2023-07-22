@@ -9,7 +9,7 @@ def encryptFiles():
     #conn = dbutil.connect()
     #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
-    ID = "/media/orangepi/usb"#usbutil.getFileInMedia().split('\n')[-1];
+    ID = "/media/orangepi/usb"#usbutil.getFileInMedia().split('\n')[-1]; <- problem
     print("This id is: ", ID)
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
@@ -31,7 +31,7 @@ def decryptFiles():
     #conn = dbutil.connect()
     #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
-    ID = "/media/orangepi/usb"#usbutil.getFileInMedia().split('/')[-1];
+    ID = "/media/orangepi/usb"#usbutil.getFileInMedia().split('/')[-1]; <- prooblem
     print("This id is: ", ID)
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
@@ -47,6 +47,6 @@ def decryptFiles():
         encryption.makeDecryptedFile2(file, plaintext)
         encryption.removeFile2(file)
     print("Completed decryption")
-    dbutil.deleteUSB(ID, dbutil.connect()) 
+    #dbutil.deleteUSB(ID, dbutil.connect()) 
     #dbutil.disconnect(conn)
 
