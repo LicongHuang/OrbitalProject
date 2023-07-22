@@ -90,7 +90,7 @@ def getFiles():
 
 def getFileInMedia():
     files = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i /media/orangepi/", shell=True)
-    filepaths = files.encode('utf-8');
+    filepaths = files.decode('utf-8');
     print(filepaths)
 
 if __name__ == "__main__":
