@@ -6,7 +6,7 @@ import os
 
 def add_usb(usb_id):
     filepath = usbutil.getFileInMedia()
-    usb_id = filepath.split('/')[-1]
+    #usb_id = filepath.split('/')[-1]
     print(usb_id)
     dbutil.useKey(usb_id) # returns a key but not used
     print(f"{usb_id} device added")
@@ -16,6 +16,15 @@ def getIdentifier():
     a = osout.decode("utf-8")
     print("osout: ",osout)
     return a;
+
+def getNotUSBFile():
+    subout = subprocess.check_output("ls /media/orangepi/", shell=True)
+    a = subout.decode("utf-8").split("\n")
+    for id in a:
+        if not "usb" in id and "/n":
+            return id;
+
+
 def check_usb():
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)
@@ -24,11 +33,11 @@ def check_usb():
     os.system("sudo mkdir /media/orangepi/usb")
     
     # Check if USB is already mounted
-    a = getIdentifier()
+    #a = getIdentifier()
 
     mounted = os.system("sudo mount /dev/sda1 /media/orangepi/usb")
     if mounted == 0:
-        add_usb(a)
+        add_usb(getIdentifier())
         return
     
     # Wait for USB to be plugged in
@@ -38,7 +47,7 @@ def check_usb():
             #Making a mounting point
             os.system("sudo mount /dev/sda1 /media/orangepi/usb")
             
-            add_usb(a)
+            add_usb(getNotUSBFile())
             return
         elif device.action == 'remove':
             print('{} disconnected'.format(device))
