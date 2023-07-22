@@ -21,12 +21,13 @@ def fileWalk2(path):
     #infile = open("filelist.txt", "w")
     # fileWalk2("/media/orangepi/'CYX PROJECT'")
     # fileWalk2('/media/orangepi/"CYX PROJECT"')
-    print("Path: ", path)
+    #print("Path: ", path)
     command = f"ls -R {path}"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     output = output.decode("utf-8")
     formatted = formatingFileList(output)
-    #print(formatted)
+    print(formatted)
+    print("Format finish")
     return formatted
 
 def formatFileSpaces(w):
@@ -55,9 +56,9 @@ def formatingFileList(out):
                 filepath = formatFileSpaces(f[:-1])
 
             if "." not in f:
-                if filepath == f:
-                    continue
-                filepaths.append(filepath + "/" + f)
+                if filepath != f:
+                    filepaths.append(filepath + "/" + f)
+                
                 #continue
 
             if " " in f:
