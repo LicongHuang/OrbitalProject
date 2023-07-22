@@ -33,7 +33,7 @@ def decryptFiles():
     ID = filepath.split('/')[-2]
     files = usbutil.getFiles()
     key = dbutil.useKey(ID)
-    print("ID for key: ", ID)
+    #print("ID for key: ", ID)
     for file in files:
         if not file.endswith('.td'):
             continue
