@@ -92,6 +92,10 @@ def getFileInMedia():
     files = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i /media/orangepi/", shell=True)
     filepaths = files.decode('utf-8');
     print("The file path is " , filepaths)
+    filepaths = filepaths.split('\n')
+    for filepath in filepaths:
+        if "/" in filepath:
+            print(filepath)
 
 if __name__ == "__main__":
     #print(getFiles())
