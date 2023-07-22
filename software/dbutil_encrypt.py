@@ -43,6 +43,7 @@ def decryptFiles():
         output = subprocess.check_output(command, shell=True)
         #binfile = open(file, mode="rb").read()
         plaintext = encryption.decryption(key, output) #previously output is binfile
+        print("Decrypted file with key: ", key)
         encryption.makeDecryptedFile2(file, plaintext)
         encryption.removeFile2(file)
     print("Completed decryption")
