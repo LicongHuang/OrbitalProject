@@ -56,7 +56,7 @@ def poc():
         #sys.exit(1)
     finally: 
         ret = subprocess.check_output("sudo umount /dev/sda1", shell=True)
-        time.sleep(5)
+
 
 
 
@@ -69,6 +69,7 @@ def main():
             print("Successful authentication")
             lcd.auth_display();
             poc();
+        time.sleep();
 
         else:
             print("Authentication failed")
