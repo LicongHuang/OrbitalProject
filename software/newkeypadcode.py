@@ -64,7 +64,6 @@ def keypadInput():
                                 print(word)
             noPressOld=noPress
             sleep(0.1)
-        #print(word)
         sleep(0.1)
         return word
 
