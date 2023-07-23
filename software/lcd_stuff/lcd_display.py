@@ -30,7 +30,8 @@ def empty_screen():
 def loading():
     os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/loading")
 
-
+def insertpass():
+    os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/insertpass")
 
 if __name__ == "__main__":
     auth_fail()

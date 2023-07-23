@@ -61,6 +61,7 @@ def poc():
 def main():
     while True:
         print("Starting Program Up")
+        lcd.insertpass()
         if authenticate():
             print("Successful authentication")
             lcd.auth_display();
