@@ -69,7 +69,7 @@ def main():
             print("Successful authentication")
             lcd.auth_display();
             poc();
-        time.sleep();
+            time.sleep();
 
         else:
             print("Authentication failed")
