@@ -13,8 +13,8 @@
 #define I2C_FILE_NAME "/dev/i2c-3"
 
 const char* txt[]  = {
-    "Encrypt[1] or Decrypt[2]?",
-    ""
+    "Encrypt[1] or",
+    "Decrypt[2]?"
 };
 
 int main(){

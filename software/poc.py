@@ -69,11 +69,12 @@ def main():
             print("Successful authentication")
             lcd.auth_display();
             poc();
-        time.sleep();
+            time.sleep(2);
 
         else:
             print("Authentication failed")
             lcd.auth_fail();
+            time.sleep(2);
 
 if __name__ == '__main__':
     main();
