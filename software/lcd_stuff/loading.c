@@ -14,7 +14,7 @@
 
 const char* txt[]  = {
     "Loading",
-    "Please do not power off"
+    "Do not power off"
 };
 
 int main(){
