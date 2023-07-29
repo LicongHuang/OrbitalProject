@@ -1,10 +1,12 @@
+# Author: Huang Licong
+# An abstration of DB and encryption utility
 import dbutil
 import encryption
 import usbutil
 import subprocess
 
 
-
+# This encrypts files
 def encryptFiles():
     #conn = dbutil.connect()
     #ID = usbutil.getUSBID()
@@ -26,10 +28,9 @@ def encryptFiles():
         encryption.removeFile2(file)
     print("Completed encryption")
     #dbutil.disconnect(conn)
-    
+
+# This decrypts ".td" files    
 def decryptFiles():
-    #conn = dbutil.connect()
-    #ID = usbutil.getUSBID()
     filepath = usbutil.getUSBFilePath() + '/'
     ID = "/media/orangepi/usb"#usbutil.getFileInMedia().split('/')[-1]; <- prooblem
     print("This id is: ", ID)

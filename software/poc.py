@@ -1,3 +1,5 @@
+# Author: Huang Licong
+# Main script for the application
 #import os
 #import encryption
 import sys
@@ -14,10 +16,11 @@ import sys
 sys.path.append('/home/orangepi/OrbitalProject')
 import software.lcd_stuff.lcd_display as lcd
 
-
+# Authentication method
 def authenticate():
     return authentication.auth();
 
+# The whole flow of the software
 def poc():
     try:
         wait_usb.check_usb()
