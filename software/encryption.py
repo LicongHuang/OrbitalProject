@@ -1,4 +1,5 @@
-# Maintainer: Huang Licong
+# Author: Huang Licong
+# This the encryption and decryption processes
 import nacl.secret
 import os
 #import keygen
@@ -25,6 +26,8 @@ def encryption(key, file):
     ciphertext = cipher.encrypt(plaintext)
     return ciphertext
 
+# This is the encryption function
+# file: the file to be encrypted
 def encryption2(key, file):
     cipher = nacl.secret.SecretBox(key)
     plaintext = file
@@ -48,6 +51,8 @@ def decryption(key, file):
     plaintext = cipher.decrypt(file)
     return plaintext 
 
+# This is a function to decrypt the file
+# file: the file to be decrypted
 def decryption2(key, file):
     cipher = nacl.secret.SecretBox(key)
     byte_size = 1064
@@ -68,6 +73,9 @@ def makeEncryptedFile(filename, ciphertext):
     f.write(ciphertext) 
     f.close()
 
+# This is a function to make the file version 2
+# filename: the name of the file
+# ciphertext: the ciphertext of the file
 def makeEncryptedFile2(filename, ciphertext):
     filepath = f"{filename}"
     filepath = '/home/orangepi/'+ filepath.split('/')[-1]
@@ -77,6 +85,7 @@ def makeEncryptedFile2(filename, ciphertext):
     os.system(f"sudo mv {filepath}.td {filename}.td")
     os.system(f"sudo rm {filename}")
 
+#This makes a decryption file
 def makeDecryptedFile(filename, plaintext):
     # TODO make the function actually working
     #filename should always end with .td
@@ -85,7 +94,7 @@ def makeDecryptedFile(filename, plaintext):
     f = open(filepath, mode="wb")
     f.write(plaintext) 
     f.close()
-
+# makes a decryption file version 2
 def makeDecryptedFile2(filename, plaintext):
     filepath = f"{filename[:-3]}"
     filepath = '/home/orangepi/'+filepath.split('/')[-1]
@@ -95,6 +104,7 @@ def makeDecryptedFile2(filename, plaintext):
     os.system(f"sudo mv {filepath} {filename[:-3]}")
     os.system(f"sudo rm {filename}")
 
+# Removes file
 def removeFile(filename):
     # TODO make the function actually working
     if os.path.exists(filename):
@@ -102,7 +112,8 @@ def removeFile(filename):
         print("The file was removed")
     else:
         print("The file does not exist")
-    
+
+# Remove file version 2    
 def removeFile2(filename):
     if os.path.exists(filename):
         os.system('rm ' + filename)

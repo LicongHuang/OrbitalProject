@@ -1,22 +1,25 @@
+# Author: Huang Licong
+# This check for and waits for USB
 import pyudev
 import subprocess
 import dbutil
 import usbutil
 import os
 
+# This adds usb to the database
 def add_usb(usb_id):
     filepath = usbutil.getFileInMedia()
     #usb_id = filepath.split('/')[-1]
     print(usb_id)
     dbutil.useKey(usb_id) # returns a key but not used
     print(f"{usb_id} device added")
-
+# Identifier
 def getIdentifier():
     osout = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i '/media/orangepi/'", shell=True)
     a = osout.decode("utf-8")
     print("osout: ",osout)
     return a;
-
+# Get alternative files
 def getNotUSBFile():
     subout = subprocess.check_output("ls /media/orangepi/", shell=True)
     a = subout.decode("utf-8").split("\n")
@@ -24,7 +27,7 @@ def getNotUSBFile():
         if not "usb" in id and "/n":
             return id;
 
-
+# Checks for USB and mounts it
 def check_usb():
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)

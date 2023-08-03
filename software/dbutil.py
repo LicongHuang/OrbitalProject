@@ -1,6 +1,9 @@
 # Author: Huang Licong
+# DB utility code base
 import keygen
 import sqlite3
+
+
 
 # This gets the key from the database
 # usb_id: The id of the usb

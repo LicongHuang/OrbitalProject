@@ -1,5 +1,8 @@
+# Author: Huang Licong
+# This is a key generation file
 import os
 
+# Generates key
 def genKey():
 
     command = "head -1 /dev/random > key.key"

@@ -1,3 +1,5 @@
+# Author: Huang Licong
+# USB utility code base
 import os
 import encryption
 from os.path import join, getsize
@@ -6,7 +8,7 @@ import subprocess
 
 # state: 1 for getting the file from the USB
 
-
+# Gets all files
 def fileWalk(path):
     filesList = []
 
@@ -17,6 +19,7 @@ def fileWalk(path):
             filesList.append(os.path.join(root, file))
     return filesList
 
+# Get alls files v2
 def fileWalk2(path):
     #infile = open("filelist.txt", "w")
     # fileWalk2("/media/orangepi/'CYX PROJECT'")
@@ -30,6 +33,7 @@ def fileWalk2(path):
     print("Format finish")
     return formatted
 
+# Formats file path into terminal legal version
 def formatFileSpaces(w):
     f = w.split('/')
     w = ''
@@ -42,7 +46,7 @@ def formatFileSpaces(w):
             w += '/' + i
     return w
     
-
+# Formats files into a list
 def formatingFileList(out):
     folders = out.split('\n\n')
     filepaths = []
@@ -82,13 +86,13 @@ def getUSBFilePath():
     return "/media/orangepi/usb/'{}'".format(outter)
 
     
-
+# Get some file path
 def getFiles():
     filepath = getUSBFilePath()
     filepath = "/media/orangepi/usb"
     return fileWalk2(filepath)
 
-
+# Get the filepath for the USB mount
 def getFileInMedia():
     files = subprocess.check_output("lsblk -o MOUNTPOINT | grep -i /media/orangepi/", shell=True)
     filepaths = files.decode('utf-8');

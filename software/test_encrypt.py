@@ -1,6 +1,9 @@
+# Author: Huang Licong
+# test file
 import dbutil
 import encryption
 
+# This is the initialisation test for encryption
 if __name__ == "__main__":
     filepath = './usb_test/some.txt'
     ID = 'usb_test'

@@ -1,9 +1,12 @@
+# Author: Huang Licong
+# Test file
 import dbutil
 import keygen
 import encryption
 import usbutil
 import unittest
 
+# The is the initalisation test
 class TestTD(unittest.TestCase):
 
     def test_db_working(self):
