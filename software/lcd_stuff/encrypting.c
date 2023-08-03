@@ -13,8 +13,8 @@
 #define I2C_FILE_NAME "/dev/i2c-3"
 
 const char* txt[]  = {
-    "Authentication",
-    "Successful"
+    "Encrypting",
+    ""
 };
 
 int main(){

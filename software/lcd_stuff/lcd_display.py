@@ -5,7 +5,13 @@ def auth_fail():
     os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/auth_fail")
 
 def auth_display():
-    os.system('/home/orangepi/OrbitalProject/software/lcd_stuff/auth_display')
+    os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/auth_display")
+
+def encrypting():
+    os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/encrypting")
+
+def decrypting():
+    os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/decrypting")
 
 def de_com():
     os.system("/home/orangepi/OrbitalProject/software/lcd_stuff/de_complete")
@@ -36,6 +42,8 @@ def insertpass():
 if __name__ == "__main__":
     auth_fail()
     auth_display()
+    encrypting()
+    decrypting()
     de_com()
     en_com()
     en_or_de()
