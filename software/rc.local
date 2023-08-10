@@ -1,9 +1,10 @@
+#!/bin/sh -e
+
 #@@author ChinYanXu-reused
 #Reused from https://itslinuxfoss.com/run-script-startup-ubuntu/ method 3
 #with minor modifications
 
-#!/bin/sh -e
-#
+# This file is located in /etc/ , such that it would run the script as a service 
 # rc.local
 #
 # This script is executed at the end of each multiuser runlevel.
